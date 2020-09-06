@@ -13,6 +13,7 @@ SystemJS.config({
     'systemjs-babel-build': 'systemjs-plugin-babel@latest/systemjs-babel-browser.js',
     'react': 'react@16.13.1/umd/react.production.min.js',
     'react-dom': 'react-dom@16.13.1/umd/react-dom.production.min.js',
+    'react-router-dom': 'https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.2.0/react-router-dom.min.js',
     '@material-ui': '@material-ui/core@latest/umd/material-ui.production.min.js',
     'axios': 'https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js'
   },

@@ -1,13 +1,15 @@
 import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import SearchTracks from './SearchTracks/SearchTracks.jsx';
+import TrackLyrics from './TrackLyrics/TrackLyrics.jsx';
 import { Box } from '@material-ui';
-import SearchForm from './SearchTracks/SearchForm.jsx';
-import SearchList from './SearchTracks/SearchList.jsx';
 
 const Main = () => {
   return (
-    <Box component="main" >
-      <SearchForm />
-      <SearchList />
+    <Box component="main">
+      <Redirect from="/" to="/search" />
+      <Route path="/search" component={SearchTracks} exact />
+      <Route path="/lyrics/:id" component={TrackLyrics} exact />
     </Box>
   )
 }

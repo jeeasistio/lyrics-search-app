@@ -18,19 +18,16 @@ const SearchList = () => {
 
   const { tracks, dispatchTracks } = useContext(TracksContext);
 
-  useEffect( async () => {
-    const res = await axios.get('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=10&country=ph&f_has_lyrics=1&apikey=6249d0414a4138bea4e67323fccc223f')
-    const fetchedTopTracks = await res.data.message.body['track_list']
-    
-    const topTracksAction = () => ({
-      type: 'TOP_TRACKS',
-      payload: {
-        top_tracks: fetchedTopTracks,
-        heading: 'Top Tracks'
-      }
-    })
-    
-    dispatchTracks(topTracksAction());
+  useEffect(() => {
+    axios
+      .get('https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/chart.tracks.get?chart_name=top&page=1&page_size=10&country=ph&f_has_lyrics=1&apikey=6249d0414a4138bea4e67323fccc223f')
+      .then(res => dispatchTracks({
+        type: 'TOP_TRACKS',
+        payload: {
+          top_tracks: res.data.message.body['track_list'],
+          heading: 'Top Tracks'
+        }
+      }))
   }, [])
 
   return (

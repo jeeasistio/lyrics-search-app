@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Typography,
   Card,
@@ -35,7 +36,7 @@ const TrackItem = ({ track }) => {
         </Box>
       </CardContent>
       <CardActions>
-        <Button fullWidth>View Lyrics</Button>
+        <Button component={Link} to={`/lyrics/${id}`} fullWidth>View Lyrics</Button>
       </CardActions>
     </Card>
   )
