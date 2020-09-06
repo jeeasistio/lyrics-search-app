@@ -4,7 +4,10 @@ import { Box, Typography, Button } from '@material-ui';
 
 const TrackLyrics = ({ match }) => {
   
-  const [track, setTrack] = useState({});
+  const [track, setTrack] = useState({
+    track_name: 'None',
+    artist_name: 'None'
+  });
   const [lyrics, setLyrics] = useState('');
   
   useEffect(() => {
@@ -13,7 +16,8 @@ const TrackLyrics = ({ match }) => {
       axios.get(`https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${match.params.id}&apikey=6249d0414a4138bea4e67323fccc223f`)
     ])
       .then(axios.spread((trackRes, lyricsRes) => {
-        setTrack(trackRes.data.message.body.track);
+        const trackData = trackRes.data.message.body.track;
+        Object.keys(trackData).length ? setTrack(trackData) : null;
         setLyrics(lyricsRes.data.message.body.lyrics);
       }))
   }, []);
@@ -21,10 +25,7 @@ const TrackLyrics = ({ match }) => {
   const {track_name: trackName, artist_name: artistName} = track;
   
   return (
-    <Box 
-      m={2}
-      position="relative"
-    >
+    <Box m={2}>
       <Typography align="center" variant="h5">{trackName}</Typography>
       <Box display="flex" justifyContent="center" mb={5}>
         <Typography variant="body2">by&nbsp;</Typography>
@@ -32,18 +33,14 @@ const TrackLyrics = ({ match }) => {
       </Box>
       <Box
         minHeight={'80vh'}
+        mb={2}
       >
         {typeof lyrics === 'object' ?
           <Typography>{lyrics.lyrics_body}</Typography> :
           <Typography variant="h5" color="textSecondary" align="center">No Lyrics</Typography>
         }
       </Box>
-      <Box 
-        mt={2}
-        position="absolute"
-        bottom={0}
-        width={'100%'}
-      >
+      <Box>
         <Button 
           onClick={() => history.back()} 
           fullWidth 

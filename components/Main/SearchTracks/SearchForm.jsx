@@ -14,13 +14,15 @@ const SearchForm = () => {
     e.preventDefault();
     axios
       .get(`https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.search?q_track=${inputText}&apikey=6249d0414a4138bea4e67323fccc223f`)
-      .then(res => dispatchTracks({
-        type: 'SEARCH_TRACKS',
-        payload: {
-          searched_tracks: res.data.message.body['track_list'],
-          heading: 'Matched Tracks'
-        }
-      }))
+      .then(res => {
+        dispatchTracks({
+          type: 'SEARCH_TRACKS',
+          payload: {
+            searched_tracks: res.data.message.body['track_list'],
+            heading: 'Matched Tracks'
+          }
+        })
+      })
   }
 
   return (

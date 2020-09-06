@@ -17,7 +17,7 @@ const TrackItem = ({ track }) => {
     track_name: trackName,
     album_name: albumName,
     artist_name: artistName,
-    commontrack_id: id
+    track_id: id
   } = track;
 
   return (
