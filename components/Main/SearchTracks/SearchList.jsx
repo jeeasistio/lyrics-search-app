@@ -48,10 +48,11 @@ const SearchList = () => {
         className={classes.trackList}
         container
         spacing={2}
+        justify="center"
        >
         {tracks.track_list.map( ({ track }) => {
           return (
-            <Grid xs={12} item>
+            <Grid xs={12} sm={6} md={4} item>
               <TrackItem track={track} />
             </Grid>
           )

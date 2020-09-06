@@ -5,7 +5,7 @@ import {
   Card,
   CardHeader,
   CardContent,
-  CardActions,
+  CardActionArea,
   Button,
   Icon,
   Box
@@ -22,22 +22,21 @@ const TrackItem = ({ track }) => {
 
   return (
     <Card>
-      <CardHeader title={trackName} />
-      <CardContent>
-        <Box display="flex" alignItems="center">
-          <Icon fontSize="small">album</Icon>
-          <Typography variant="subtitle2">Album:&nbsp;&nbsp;</Typography>
-          <Typography>{albumName}</Typography>
-        </Box>
-        <Box display="flex" alignItems="center">
-          <Icon fontSize="small">person</Icon>
-          <Typography variant="subtitle2">Artist:&nbsp;&nbsp;</Typography>
-          <Typography>{artistName}</Typography>
-        </Box>
-      </CardContent>
-      <CardActions>
-        <Button component={Link} to={`/lyrics/${id}`} fullWidth>View Lyrics</Button>
-      </CardActions>
+      <CardActionArea component={Link} to={`/lyrics/${id}`}>
+        <CardHeader title={trackName} />
+        <CardContent>
+          <Box display="flex" alignItems="center">
+            <Icon fontSize="small">album</Icon>
+            <Typography variant="subtitle2">Album:&nbsp;&nbsp;</Typography>
+            <Typography>{albumName}</Typography>
+          </Box>
+          <Box display="flex" alignItems="center">
+            <Icon fontSize="small">person</Icon>
+            <Typography variant="subtitle2">Artist:&nbsp;&nbsp;</Typography>
+            <Typography>{artistName}</Typography>
+          </Box>
+        </CardContent>
+      </CardActionArea>
     </Card>
   )
 }
