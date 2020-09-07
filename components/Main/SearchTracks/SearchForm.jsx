@@ -6,15 +6,17 @@ import { TracksContext } from '/contexts/TracksContext.jsx';
 
 const SearchForm = () => {
 
-  const { dispatchTracks } = useContext(TracksContext);
+  const { dispatchTracks, setFetching } = useContext(TracksContext);
 
   const [inputText, setInputText] = useState('');
 
   const searchTracks = (e) => {
     e.preventDefault();
+    setFetching(true)
     axios
       .get(`https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.search?q_track=${inputText}&apikey=6249d0414a4138bea4e67323fccc223f`)
       .then(res => {
+        setFetching(false);
         dispatchTracks({
           type: 'SEARCH_TRACKS',
           payload: {
