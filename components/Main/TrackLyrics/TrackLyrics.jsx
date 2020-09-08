@@ -32,7 +32,7 @@ const TrackLyrics = ({ match }) => {
         <Typography style={{fontWeight: 500}} variant="body2">{artistName}</Typography>
       </Box>
       <Box
-        minHeight={'80vh'}
+        minHeight={'70vh'}
         mb={2}
       >
         {typeof lyrics === 'object' ?
@@ -45,6 +45,7 @@ const TrackLyrics = ({ match }) => {
           onClick={() => history.back()} 
           fullWidth 
           variant="contained"
+          color="primary"
         >
           Go Back
         </Button>

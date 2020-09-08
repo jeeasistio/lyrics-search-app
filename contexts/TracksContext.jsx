@@ -3,31 +3,31 @@ import axios from 'axios';
 
 const TracksContext = createContext();
 
-const TracksProvider = ({ children }) => {
-  
-  const initialState = {
-    track_list: [],
-    heading: ''
-  }
-  
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case 'SEARCH_TRACKS':
-        return {
-          track_list: action.payload.searched_tracks,
+const initialState = {
+  track_list: [],
+  heading: ''
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'SEARCH_TRACKS':
+      return {
+        track_list: action.payload.searched_tracks,
           heading: action.payload.heading
-        }
+      }
       case 'TOP_TRACKS':
         return {
           track_list: action.payload.top_tracks,
-          heading: action.payload.heading
+            heading: action.payload.heading
         }
         break;
       default:
         return state;
         break;
-    }
   }
+}
+
+const TracksProvider = ({ children }) => {
   
   const [tracks, dispatchTracks] = useReducer(reducer, initialState);
   const [fetching, setFetching] = useState(false);
